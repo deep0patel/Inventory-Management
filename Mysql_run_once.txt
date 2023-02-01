@@ -1,0 +1,6 @@
+create database
+    laureola_industry;
+
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin@1234';
+    
+GRANT ALL PRIVILEGES ON laureola_industry.* TO admin@localhost;

@@ -1,0 +1,610 @@
+DROP DATABASE laureola_industry;
+
+
+create database
+    laureola_industry;
+
+use
+    laureola_industry;
+
+CREATE TABLE
+    userInfo(
+        id INT Primary key auto_increment,
+        user_id varchar(30),
+        user_name varchar(30),
+        user_password varchar(30)
+    );
+
+INSERT INTO
+    userInfo
+VALUES
+(1, 'admin', 'admin', 'admin');
+
+INSERT INTO
+    userInfo
+VALUES
+(2, 'deep1234p', 'Deep_Patel', 'Deep@1234');
+
+
+CREATE TABLE history(
+ id INT Primary key auto_increment,
+ `count` INT not null,
+ `Time` TIME,
+ `Date` DATE,
+ user_name VARCHAR(30),
+ item_name VARCHAR(100),
+ op_type VARCHAR(20),
+ quantity VARCHAR(25),
+ totalquantity VARCHAR(25), 
+ remarks varchar(100)
+ );
+
+
+CREATE TABLE
+    category(
+        category_id INT Primary key auto_increment,
+        category_name VARCHAR(30)
+    );
+
+INSERT INTO
+    category
+VALUES
+(1, 'Wire Products');
+
+INSERT INTO
+    category
+VALUES
+(2, 'Stage Lighting Products');
+
+INSERT INTO
+    category
+VALUES
+(3, 'Suspension Parts');
+
+CREATE TABLE
+    construction (
+        con_id INT PRIMARY KEY Auto_increment,
+        construction VARCHAR(6)
+    );
+
+INSERT INTO
+    construction
+VALUES
+    (1, '7X7');
+
+INSERT INTO
+    construction
+VALUES
+    (2, '7X19');
+
+CREATE TABLE
+    coating (
+        coating_id INT PRIMARY KEY Auto_increment,
+        coating VARCHAR(20)
+    );
+
+INSERT INTO
+    coating
+VALUES
+(1, 'PVCCoated');
+
+INSERT INTO
+    coating
+VALUES
+(2, 'UnCoated');
+
+CREATE TABLE
+    wirematerial(
+        material_id INT PRIMARY KEY Auto_increment,
+        material VARCHAR(30)
+    );
+
+INSERT INTO
+    wirematerial
+VALUES
+    (1, 'Galvanized-Steel');
+
+INSERT INTO
+    wirematerial
+VALUES
+    (2, 'Stainless-Steel');
+
+CREATE TABLE
+    diameter(
+        diameter_id INT PRIMARY KEY Auto_increment,
+        diameter VARCHAR(30)
+    );
+
+INSERT INTO
+    diameter
+VALUES
+(1, '3/32"');
+
+INSERT INTO
+    diameter
+VALUES
+(2, '1/16"');
+
+INSERT INTO
+    diameter
+VALUES
+(3, '1/8"');
+
+INSERT INTO
+    diameter
+VALUES
+(4, '3/16"');
+
+
+CREATE TABLE
+    length(
+        length_id INT Primary key auto_increment,
+        length_name VARCHAR(20),
+        length_value_feet BIGINT
+    );
+
+INSERT INTO
+    length
+VALUES
+(1, '100 ft', 100);
+
+INSERT INTO
+    length
+VALUES
+(2, '250 ft', 250);
+
+INSERT INTO
+    length
+VALUES
+(3, '500 ft', 500);
+
+INSERT INTO
+    length
+VALUES
+(4, '1000 ft', 1000);
+
+INSERT INTO
+    length
+VALUES
+(5, '2500 ft', 2500);
+
+INSERT INTO
+    length
+VALUES
+(6, '5000 ft', 5000);
+
+INSERT INTO
+    length
+VALUES
+(7, '10000 ft', 10000);
+
+
+
+create table wire(
+    wire_id INT PRIMARY KEY AUTO_INCREMENT,
+    coating_id INT REFERENCES coating(coating_id),
+    con_id INT REFERENCES construction(con_id),
+    material_id INT REFERENCES wirematerial(material_id),
+    diameter_id INT REFERENCES diameter(diameter_id) ,
+    wire_name VARCHAR(100),
+    length_in_stock BIGINT,
+
+    CONSTRAINT dept_city_unique UNIQUE (coating_id, con_id,material_id,diameter_id)
+    
+);
+
+INSERT INTO wire VALUES (1,1,1,1,1,0,'PVCCoated/7X7/Galvanized-Steel/3/32');
+INSERT INTO wire VALUES (2,1,1,1,2,0,'PVCCoated/7X7/Galvanized-Steel/1/16');
+INSERT INTO wire VALUES (3,1,1,1,3,0,'PVCCoated/7X7/Galvanized-Steel/1/8');
+INSERT INTO wire VALUES (4,1,1,1,4,0,'PVCCoated/7X7/Galvanized-Steel/3/16');
+INSERT INTO wire VALUES (5,1,1,2,1,0,'PVCCoated/7X7/Stainless-Steel/3/32');
+INSERT INTO wire VALUES (6,1,1,2,2,0,'PVCCoated/7X7/Stainless-Steel/1/16');
+INSERT INTO wire VALUES (7,1,1,2,3,0,'PVCCoated/7X7/Stainless-Steel/1/8');
+INSERT INTO wire VALUES (8,1,1,2,4,0,'PVCCoated/7X7/Stainless-Steel/3/16');
+INSERT INTO wire VALUES (9,1,2,1,1,0,'PVCCoated/7X19/Galvanized-Steel/3/32');
+INSERT INTO wire VALUES (10,1,2,1,2,0,'PVCCoated/7X19/Galvanized-Steel/1/16');
+INSERT INTO wire VALUES (11,1,2,1,3,0,'PVCCoated/7X19/Galvanized-Steel/1/8');
+INSERT INTO wire VALUES (12,1,2,1,4,0,'PVCCoated/7X19/Galvanized-Steel/3/16');
+INSERT INTO wire VALUES (13,1,2,2,1,0,'PVCCoated/7X19/Stainless-Steel/3/32');
+INSERT INTO wire VALUES (14,1,2,2,2,0,'PVCCoated/7X19/Stainless-Steel/1/16');
+INSERT INTO wire VALUES (15,1,2,2,3,0,'PVCCoated/7X19/Stainless-Steel/1/8');
+INSERT INTO wire VALUES (16,1,2,2,4,0,'PVCCoated/7X19/Stainless-Steel/3/16');
+INSERT INTO wire VALUES (17,2,1,1,1,0,'UnCoated/7X7/Galvanized-Steel/3/32');
+INSERT INTO wire VALUES (18,2,1,1,2,0,'UnCoated/7X7/Galvanized-Steel/1/16');
+INSERT INTO wire VALUES (19,2,1,1,3,0,'UnCoated/7X7/Galvanized-Steel/1/8');
+INSERT INTO wire VALUES (20,2,1,1,4,0,'UnCoated/7X7/Galvanized-Steel/3/16');
+INSERT INTO wire VALUES (21,2,1,2,1,0,'UnCoated/7X7/Stainless-Steel/3/32');
+INSERT INTO wire VALUES (22,2,1,2,2,0,'UnCoated/7X7/Stainless-Steel/1/16');
+INSERT INTO wire VALUES (23,2,1,2,3,0,'UnCoated/7X7/Stainless-Steel/1/8');
+INSERT INTO wire VALUES (24,2,1,2,4,0,'UnCoated/7X7/Stainless-Steel/3/16');
+INSERT INTO wire VALUES (25,2,2,1,1,0,'UnCoated/7X19/Galvanized-Steel/3/32');
+INSERT INTO wire VALUES (26,2,2,1,2,0,'UnCoated/7X19/Galvanized-Steel/1/16');
+INSERT INTO wire VALUES (27,2,2,1,3,0,'UnCoated/7X19/Galvanized-Steel/1/8');
+INSERT INTO wire VALUES (28,2,2,1,4,0,'UnCoated/7X19/Galvanized-Steel/3/16');
+INSERT INTO wire VALUES (29,2,2,2,1,0,'UnCoated/7X19/Stainless-Steel/3/32');
+INSERT INTO wire VALUES (30,2,2,2,2,0,'UnCoated/7X19/Stainless-Steel/1/16');
+INSERT INTO wire VALUES (31,2,2,2,3,0,'UnCoated/7X19/Stainless-Steel/1/8');
+INSERT INTO wire VALUES (32,2,2,2,4,0,'UnCoated/7X19/Stainless-Steel/3/16');
+
+
+
+CREATE TABLE
+    wireAccType(
+        AccType_id INT Primary key auto_increment,
+        AccType_name VARCHAR(30)
+    );
+
+INSERT INTO
+    wireAccType
+VALUES
+(1, 'Ferrules');
+
+INSERT INTO
+    wireAccType
+VALUES
+(2, 'Thimbles');
+
+INSERT INTO
+    wireAccType
+VALUES
+(3, 'Wire Rope Clips');
+
+CREATE TABLE
+    wireAccSize(
+        AccSize_id INT Primary key auto_increment,
+        AccSize_name VARCHAR(30)
+    );
+
+INSERT INTO
+    wireAccSize
+VALUES
+(1, '1/16"');
+
+INSERT INTO
+    wireAccSize
+VALUES
+(2, '3/32"');
+
+INSERT INTO
+    wireAccSize
+VALUES
+(3, '1/8"');
+
+CREATE TABLE
+    wireAccPackSize(
+        AccPackSize_id INT Primary key auto_increment,
+        AccPackSize_name VARCHAR(30),
+        AccPackSize_value INT
+    );
+
+INSERT INTO
+    wireAccPackSize
+VALUES
+(1, '250', 250);
+
+INSERT INTO
+    wireAccPackSize
+VALUES
+(2, '500', 500);
+
+INSERT INTO
+    wireAccPackSize
+VALUES
+(3, '1000', 1000);
+
+
+create table wireAccessories(
+    wireAcc_id INT PRIMARY KEY AUTO_INCREMENT,
+    type_id INT REFERENCES wireacctype(AccType_id),
+    size_id INT REFERENCES wireaccsize(AccSize_id),    
+    peice_in_stock BIGINT,
+
+    CONSTRAINT wireAcc_unique UNIQUE (wireAcc_id, type_id, size_id)
+    
+);
+
+
+INSERT INTO wireAccessories VALUES(1,1,1,0);
+INSERT INTO wireAccessories VALUES(2,1,2,0);
+INSERT INTO wireAccessories VALUES(3,1,3,0);
+INSERT INTO wireAccessories VALUES(4,2,1,0);
+INSERT INTO wireAccessories VALUES(5,2,2,0);
+INSERT INTO wireAccessories VALUES(6,2,3,0);
+INSERT INTO wireAccessories VALUES(7,3,1,0);
+INSERT INTO wireAccessories VALUES(8,3,2,0);
+INSERT INTO wireAccessories VALUES(9,3,3,0);
+
+CREATE TABLE
+    stageLightAccColour (
+        colour_id INT PRIMARY KEY Auto_increment,
+        colour VARCHAR(20)
+    );
+
+CREATE TABLE
+    stageLightAccLength (
+        length_id INT PRIMARY KEY Auto_increment,
+        length_name VARCHAR(20)
+    );
+
+
+
+
+INSERT INTO
+    stageLightAccColour
+VALUES
+    (1, "Black"),
+    (2, "Silver");
+
+INSERT INTO
+    stageLightAccLength
+VALUES
+    (1, '18\"'),
+    (2, '30\"');
+
+
+
+
+
+create table wirepoollength(
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    lengthId INT,
+    lengthValue varchar(15),
+    wireId INT references wire(wireId),
+    quantity INT
+);
+
+
+
+
+INSERT INTO wirepoollength VALUES(1,1,'100 ft',1,0);
+INSERT INTO wirepoollength VALUES(2,2,'250 ft',1,0);
+INSERT INTO wirepoollength VALUES(3,3,'500 ft',1,0);
+INSERT INTO wirepoollength VALUES(4,4,'1000 ft',1,0);
+INSERT INTO wirepoollength VALUES(5,5,'2500 ft',1,0);
+INSERT INTO wirepoollength VALUES(6,6,'5000 ft',1,0);
+INSERT INTO wirepoollength VALUES(7,7,'10000 ft',1,0);
+INSERT INTO wirepoollength VALUES(8,1,'100 ft',2,0);
+INSERT INTO wirepoollength VALUES(9,2,'250 ft',2,0);
+INSERT INTO wirepoollength VALUES(10,3,'500 ft',2,0);
+INSERT INTO wirepoollength VALUES(11,4,'1000 ft',2,0);
+INSERT INTO wirepoollength VALUES(12,5,'2500 ft',2,0);
+INSERT INTO wirepoollength VALUES(13,6,'5000 ft',2,0);
+INSERT INTO wirepoollength VALUES(14,7,'10000 ft',2,0);
+INSERT INTO wirepoollength VALUES(15,1,'100 ft',3,0);
+INSERT INTO wirepoollength VALUES(16,2,'250 ft',3,0);
+INSERT INTO wirepoollength VALUES(17,3,'500 ft',3,0);
+INSERT INTO wirepoollength VALUES(18,4,'1000 ft',3,0);
+INSERT INTO wirepoollength VALUES(19,5,'2500 ft',3,0);
+INSERT INTO wirepoollength VALUES(20,6,'5000 ft',3,0);
+INSERT INTO wirepoollength VALUES(21,7,'10000 ft',3,0);
+INSERT INTO wirepoollength VALUES(22,1,'100 ft',4,0);
+INSERT INTO wirepoollength VALUES(23,2,'250 ft',4,0);
+INSERT INTO wirepoollength VALUES(24,3,'500 ft',4,0);
+INSERT INTO wirepoollength VALUES(25,4,'1000 ft',4,0);
+INSERT INTO wirepoollength VALUES(26,5,'2500 ft',4,0);
+INSERT INTO wirepoollength VALUES(27,6,'5000 ft',4,0);
+INSERT INTO wirepoollength VALUES(28,7,'10000 ft',4,0);
+INSERT INTO wirepoollength VALUES(29,1,'100 ft',5,0);
+INSERT INTO wirepoollength VALUES(30,2,'250 ft',5,0);
+INSERT INTO wirepoollength VALUES(31,3,'500 ft',5,0);
+INSERT INTO wirepoollength VALUES(32,4,'1000 ft',5,0);
+INSERT INTO wirepoollength VALUES(33,5,'2500 ft',5,0);
+INSERT INTO wirepoollength VALUES(34,6,'5000 ft',5,0);
+INSERT INTO wirepoollength VALUES(35,7,'10000 ft',5,0);
+INSERT INTO wirepoollength VALUES(36,1,'100 ft',6,0);
+INSERT INTO wirepoollength VALUES(37,2,'250 ft',6,0);
+INSERT INTO wirepoollength VALUES(38,3,'500 ft',6,0);
+INSERT INTO wirepoollength VALUES(39,4,'1000 ft',6,0);
+INSERT INTO wirepoollength VALUES(40,5,'2500 ft',6,0);
+INSERT INTO wirepoollength VALUES(41,6,'5000 ft',6,0);
+INSERT INTO wirepoollength VALUES(42,7,'10000 ft',6,0);
+INSERT INTO wirepoollength VALUES(43,1,'100 ft',7,0);
+INSERT INTO wirepoollength VALUES(44,2,'250 ft',7,0);
+INSERT INTO wirepoollength VALUES(45,3,'500 ft',7,0);
+INSERT INTO wirepoollength VALUES(46,4,'1000 ft',7,0);
+INSERT INTO wirepoollength VALUES(47,5,'2500 ft',7,0);
+INSERT INTO wirepoollength VALUES(48,6,'5000 ft',7,0);
+INSERT INTO wirepoollength VALUES(49,7,'10000 ft',7,0);
+INSERT INTO wirepoollength VALUES(50,1,'100 ft',8,0);
+INSERT INTO wirepoollength VALUES(51,2,'250 ft',8,0);
+INSERT INTO wirepoollength VALUES(52,3,'500 ft',8,0);
+INSERT INTO wirepoollength VALUES(53,4,'1000 ft',8,0);
+INSERT INTO wirepoollength VALUES(54,5,'2500 ft',8,0);
+INSERT INTO wirepoollength VALUES(55,6,'5000 ft',8,0);
+INSERT INTO wirepoollength VALUES(56,7,'10000 ft',8,0);
+INSERT INTO wirepoollength VALUES(57,1,'100 ft',9,0);
+INSERT INTO wirepoollength VALUES(58,2,'250 ft',9,0);
+INSERT INTO wirepoollength VALUES(59,3,'500 ft',9,0);
+INSERT INTO wirepoollength VALUES(60,4,'1000 ft',9,0);
+INSERT INTO wirepoollength VALUES(61,5,'2500 ft',9,0);
+INSERT INTO wirepoollength VALUES(62,6,'5000 ft',9,0);
+INSERT INTO wirepoollength VALUES(63,7,'10000 ft',9,0);
+INSERT INTO wirepoollength VALUES(64,1,'100 ft',10,0);
+INSERT INTO wirepoollength VALUES(65,2,'250 ft',10,0);
+INSERT INTO wirepoollength VALUES(66,3,'500 ft',10,0);
+INSERT INTO wirepoollength VALUES(67,4,'1000 ft',10,0);
+INSERT INTO wirepoollength VALUES(68,5,'2500 ft',10,0);
+INSERT INTO wirepoollength VALUES(69,6,'5000 ft',10,0);
+INSERT INTO wirepoollength VALUES(70,7,'10000 ft',10,0);
+INSERT INTO wirepoollength VALUES(71,1,'100 ft',11,0);
+INSERT INTO wirepoollength VALUES(72,2,'250 ft',11,0);
+INSERT INTO wirepoollength VALUES(73,3,'500 ft',11,0);
+INSERT INTO wirepoollength VALUES(74,4,'1000 ft',11,0);
+INSERT INTO wirepoollength VALUES(75,5,'2500 ft',11,0);
+INSERT INTO wirepoollength VALUES(76,6,'5000 ft',11,0);
+INSERT INTO wirepoollength VALUES(77,7,'10000 ft',11,0);
+INSERT INTO wirepoollength VALUES(78,1,'100 ft',12,0);
+INSERT INTO wirepoollength VALUES(79,2,'250 ft',12,0);
+INSERT INTO wirepoollength VALUES(80,3,'500 ft',12,0);
+INSERT INTO wirepoollength VALUES(81,4,'1000 ft',12,0);
+INSERT INTO wirepoollength VALUES(82,5,'2500 ft',12,0);
+INSERT INTO wirepoollength VALUES(83,6,'5000 ft',12,0);
+INSERT INTO wirepoollength VALUES(84,7,'10000 ft',12,0);
+INSERT INTO wirepoollength VALUES(85,1,'100 ft',13,0);
+INSERT INTO wirepoollength VALUES(86,2,'250 ft',13,0);
+INSERT INTO wirepoollength VALUES(87,3,'500 ft',13,0);
+INSERT INTO wirepoollength VALUES(88,4,'1000 ft',13,0);
+INSERT INTO wirepoollength VALUES(89,5,'2500 ft',13,0);
+INSERT INTO wirepoollength VALUES(90,6,'5000 ft',13,0);
+INSERT INTO wirepoollength VALUES(91,7,'10000 ft',13,0);
+INSERT INTO wirepoollength VALUES(92,1,'100 ft',14,0);
+INSERT INTO wirepoollength VALUES(93,2,'250 ft',14,0);
+INSERT INTO wirepoollength VALUES(94,3,'500 ft',14,0);
+INSERT INTO wirepoollength VALUES(95,4,'1000 ft',14,0);
+INSERT INTO wirepoollength VALUES(96,5,'2500 ft',14,0);
+INSERT INTO wirepoollength VALUES(97,6,'5000 ft',14,0);
+INSERT INTO wirepoollength VALUES(98,7,'10000 ft',14,0);
+INSERT INTO wirepoollength VALUES(99,1,'100 ft',15,0);
+INSERT INTO wirepoollength VALUES(100,2,'250 ft',15,0);
+INSERT INTO wirepoollength VALUES(101,3,'500 ft',15,0);
+INSERT INTO wirepoollength VALUES(102,4,'1000 ft',15,0);
+INSERT INTO wirepoollength VALUES(103,5,'2500 ft',15,0);
+INSERT INTO wirepoollength VALUES(104,6,'5000 ft',15,0);
+INSERT INTO wirepoollength VALUES(105,7,'10000 ft',15,0);
+INSERT INTO wirepoollength VALUES(106,1,'100 ft',16,0);
+INSERT INTO wirepoollength VALUES(107,2,'250 ft',16,0);
+INSERT INTO wirepoollength VALUES(108,3,'500 ft',16,0);
+INSERT INTO wirepoollength VALUES(109,4,'1000 ft',16,0);
+INSERT INTO wirepoollength VALUES(110,5,'2500 ft',16,0);
+INSERT INTO wirepoollength VALUES(111,6,'5000 ft',16,0);
+INSERT INTO wirepoollength VALUES(112,7,'10000 ft',16,0);
+INSERT INTO wirepoollength VALUES(113,1,'100 ft',17,0);
+INSERT INTO wirepoollength VALUES(114,2,'250 ft',17,0);
+INSERT INTO wirepoollength VALUES(115,3,'500 ft',17,0);
+INSERT INTO wirepoollength VALUES(116,4,'1000 ft',17,0);
+INSERT INTO wirepoollength VALUES(117,5,'2500 ft',17,0);
+INSERT INTO wirepoollength VALUES(118,6,'5000 ft',17,0);
+INSERT INTO wirepoollength VALUES(119,7,'10000 ft',17,0);
+INSERT INTO wirepoollength VALUES(120,1,'100 ft',18,0);
+INSERT INTO wirepoollength VALUES(121,2,'250 ft',18,0);
+INSERT INTO wirepoollength VALUES(122,3,'500 ft',18,0);
+INSERT INTO wirepoollength VALUES(123,4,'1000 ft',18,0);
+INSERT INTO wirepoollength VALUES(124,5,'2500 ft',18,0);
+INSERT INTO wirepoollength VALUES(125,6,'5000 ft',18,0);
+INSERT INTO wirepoollength VALUES(126,7,'10000 ft',18,0);
+INSERT INTO wirepoollength VALUES(127,1,'100 ft',19,0);
+INSERT INTO wirepoollength VALUES(128,2,'250 ft',19,0);
+INSERT INTO wirepoollength VALUES(129,3,'500 ft',19,0);
+INSERT INTO wirepoollength VALUES(130,4,'1000 ft',19,0);
+INSERT INTO wirepoollength VALUES(131,5,'2500 ft',19,0);
+INSERT INTO wirepoollength VALUES(132,6,'5000 ft',19,0);
+INSERT INTO wirepoollength VALUES(133,7,'10000 ft',19,0);
+INSERT INTO wirepoollength VALUES(134,1,'100 ft',20,0);
+INSERT INTO wirepoollength VALUES(135,2,'250 ft',20,0);
+INSERT INTO wirepoollength VALUES(136,3,'500 ft',20,0);
+INSERT INTO wirepoollength VALUES(137,4,'1000 ft',20,0);
+INSERT INTO wirepoollength VALUES(138,5,'2500 ft',20,0);
+INSERT INTO wirepoollength VALUES(139,6,'5000 ft',20,0);
+INSERT INTO wirepoollength VALUES(140,7,'10000 ft',20,0);
+INSERT INTO wirepoollength VALUES(141,1,'100 ft',21,0);
+INSERT INTO wirepoollength VALUES(142,2,'250 ft',21,0);
+INSERT INTO wirepoollength VALUES(143,3,'500 ft',21,0);
+INSERT INTO wirepoollength VALUES(144,4,'1000 ft',21,0);
+INSERT INTO wirepoollength VALUES(145,5,'2500 ft',21,0);
+INSERT INTO wirepoollength VALUES(146,6,'5000 ft',21,0);
+INSERT INTO wirepoollength VALUES(147,7,'10000 ft',21,0);
+INSERT INTO wirepoollength VALUES(148,1,'100 ft',22,0);
+INSERT INTO wirepoollength VALUES(149,2,'250 ft',22,0);
+INSERT INTO wirepoollength VALUES(150,3,'500 ft',22,0);
+INSERT INTO wirepoollength VALUES(151,4,'1000 ft',22,0);
+INSERT INTO wirepoollength VALUES(152,5,'2500 ft',22,0);
+INSERT INTO wirepoollength VALUES(153,6,'5000 ft',22,0);
+INSERT INTO wirepoollength VALUES(154,7,'10000 ft',22,0);
+INSERT INTO wirepoollength VALUES(155,1,'100 ft',23,0);
+INSERT INTO wirepoollength VALUES(156,2,'250 ft',23,0);
+INSERT INTO wirepoollength VALUES(157,3,'500 ft',23,0);
+INSERT INTO wirepoollength VALUES(158,4,'1000 ft',23,0);
+INSERT INTO wirepoollength VALUES(159,5,'2500 ft',23,0);
+INSERT INTO wirepoollength VALUES(160,6,'5000 ft',23,0);
+INSERT INTO wirepoollength VALUES(161,7,'10000 ft',23,0);
+INSERT INTO wirepoollength VALUES(162,1,'100 ft',24,0);
+INSERT INTO wirepoollength VALUES(163,2,'250 ft',24,0);
+INSERT INTO wirepoollength VALUES(164,3,'500 ft',24,0);
+INSERT INTO wirepoollength VALUES(165,4,'1000 ft',24,0);
+INSERT INTO wirepoollength VALUES(166,5,'2500 ft',24,0);
+INSERT INTO wirepoollength VALUES(167,6,'5000 ft',24,0);
+INSERT INTO wirepoollength VALUES(168,7,'10000 ft',24,0);
+INSERT INTO wirepoollength VALUES(169,1,'100 ft',25,0);
+INSERT INTO wirepoollength VALUES(170,2,'250 ft',25,0);
+INSERT INTO wirepoollength VALUES(171,3,'500 ft',25,0);
+INSERT INTO wirepoollength VALUES(172,4,'1000 ft',25,0);
+INSERT INTO wirepoollength VALUES(173,5,'2500 ft',25,0);
+INSERT INTO wirepoollength VALUES(174,6,'5000 ft',25,0);
+INSERT INTO wirepoollength VALUES(175,7,'10000 ft',25,0);
+INSERT INTO wirepoollength VALUES(176,1,'100 ft',26,0);
+INSERT INTO wirepoollength VALUES(177,2,'250 ft',26,0);
+INSERT INTO wirepoollength VALUES(178,3,'500 ft',26,0);
+INSERT INTO wirepoollength VALUES(179,4,'1000 ft',26,0);
+INSERT INTO wirepoollength VALUES(180,5,'2500 ft',26,0);
+INSERT INTO wirepoollength VALUES(181,6,'5000 ft',26,0);
+INSERT INTO wirepoollength VALUES(182,7,'10000 ft',26,0);
+INSERT INTO wirepoollength VALUES(183,1,'100 ft',27,0);
+INSERT INTO wirepoollength VALUES(184,2,'250 ft',27,0);
+INSERT INTO wirepoollength VALUES(185,3,'500 ft',27,0);
+INSERT INTO wirepoollength VALUES(186,4,'1000 ft',27,0);
+INSERT INTO wirepoollength VALUES(187,5,'2500 ft',27,0);
+INSERT INTO wirepoollength VALUES(188,6,'5000 ft',27,0);
+INSERT INTO wirepoollength VALUES(189,7,'10000 ft',27,0);
+INSERT INTO wirepoollength VALUES(190,1,'100 ft',28,0);
+INSERT INTO wirepoollength VALUES(191,2,'250 ft',28,0);
+INSERT INTO wirepoollength VALUES(192,3,'500 ft',28,0);
+INSERT INTO wirepoollength VALUES(193,4,'1000 ft',28,0);
+INSERT INTO wirepoollength VALUES(194,5,'2500 ft',28,0);
+INSERT INTO wirepoollength VALUES(195,6,'5000 ft',28,0);
+INSERT INTO wirepoollength VALUES(196,7,'10000 ft',28,0);
+INSERT INTO wirepoollength VALUES(197,1,'100 ft',29,0);
+INSERT INTO wirepoollength VALUES(198,2,'250 ft',29,0);
+INSERT INTO wirepoollength VALUES(199,3,'500 ft',29,0);
+INSERT INTO wirepoollength VALUES(200,4,'1000 ft',29,0);
+INSERT INTO wirepoollength VALUES(201,5,'2500 ft',29,0);
+INSERT INTO wirepoollength VALUES(202,6,'5000 ft',29,0);
+INSERT INTO wirepoollength VALUES(203,7,'10000 ft',29,0);
+INSERT INTO wirepoollength VALUES(204,1,'100 ft',30,0);
+INSERT INTO wirepoollength VALUES(205,2,'250 ft',30,0);
+INSERT INTO wirepoollength VALUES(206,3,'500 ft',30,0);
+INSERT INTO wirepoollength VALUES(207,4,'1000 ft',30,0);
+INSERT INTO wirepoollength VALUES(208,5,'2500 ft',30,0);
+INSERT INTO wirepoollength VALUES(209,6,'5000 ft',30,0);
+INSERT INTO wirepoollength VALUES(210,7,'10000 ft',30,0);
+INSERT INTO wirepoollength VALUES(211,1,'100 ft',31,0);
+INSERT INTO wirepoollength VALUES(212,2,'250 ft',31,0);
+INSERT INTO wirepoollength VALUES(213,3,'500 ft',31,0);
+INSERT INTO wirepoollength VALUES(214,4,'1000 ft',31,0);
+INSERT INTO wirepoollength VALUES(215,5,'2500 ft',31,0);
+INSERT INTO wirepoollength VALUES(216,6,'5000 ft',31,0);
+INSERT INTO wirepoollength VALUES(217,7,'10000 ft',31,0);
+INSERT INTO wirepoollength VALUES(218,1,'100 ft',32,0);
+INSERT INTO wirepoollength VALUES(219,2,'250 ft',32,0);
+INSERT INTO wirepoollength VALUES(220,3,'500 ft',32,0);
+INSERT INTO wirepoollength VALUES(221,4,'1000 ft',32,0);
+INSERT INTO wirepoollength VALUES(222,5,'2500 ft',32,0);
+INSERT INTO wirepoollength VALUES(223,6,'5000 ft',32,0);
+INSERT INTO wirepoollength VALUES(224,7,'10000 ft',32,0);
+
+
+create table suspensionPartsType
+        (
+        type_id INT PRIMARY KEY Auto_increment,
+        type_name VARCHAR(20)
+    );
+
+    INSERT INTO suspensionPartsType VALUES
+    (1,'With-SafetyNut'),
+    (2,'Without-SafetyNut');
+
+select* from suspensionPartsType;
+select* from suspensionParts;
+
+CREATE TABLE
+    suspensionParts(
+        part_id INT PRIMARY KEY Auto_increment,
+        type_id INT UNIQUE REFERENCES suspensionPartsType(type_id) ,       
+        peice_in_stock INT    
+    );
+
+    INSERT INTO suspensionParts VALUES
+    (1,1,0),
+    (2,2,0);
+
+
+    Select suspensionparts.part_id , suspensionpartsType.type_name, suspensionparts.peice_in_stock from suspensionparts join suspensionpartstype on suspensionparts.type_id = suspensionpartsType.type_id;
