@@ -12,4 +12,6 @@ GitHub link is attached below you can download and use it.
 
 Requirements for this app to run is Java 17 and MySQL which you can download from the internet. Git hub link has Database script that has to be run before using this application.
 
+To run the script first run Mysql_run_once.txt in your MySQL editor. Then run Mysql_script_set_reset once. Run the second one everytime you want to reset the database.
+
 
