@@ -1,17 +1,22 @@
 # Inventory-Management
 
-This is a full stack desktop application with user view, back end and MySQL database connectivity. 
+Welcome to Inventory-Management, a powerful full-stack desktop application that seamlessly connects user views, back-end functionality, and MySQL database support.
 
-Maven has been used to build the application and handle all the dependencies.
+Built using Maven, this application efficiently handles all dependencies, ensuring a smooth development experience.
 
-Java FXML is used for the front end and MVC architecture has been developed.
+With Java FXML powering the dynamic front-end and a well-structured MVC architecture, Inventory-Management offers a user-friendly interface and robust functionality.
 
-This application has been deployed to the users computer with MySQL script to develop the database support the application. 
+To get started, simply download the application from the GitHub repository linked below. The repository also includes the necessary MySQL script to set up the database support for the application.
 
-GitHub link is attached below you can download and use it.
+Before running the application, ensure you have Java 17 and MySQL installed on your computer. You can find the required downloads online.
 
-Requirements for this app to run is Java 17 and MySQL which you can download from the internet. Git hub link has Database script that has to be run before using this application.
+To set up the database, follow these steps:
 
-To run the script first run Mysql_run_once.txt in your MySQL editor. Then run Mysql_script_set_reset once. Run the second one everytime you want to reset the database.
+1. Run `Mysql_run_once.txt` in your MySQL editor.
+2. Run `Mysql_script_set_reset` once to initialize the database.
+3. For future resets, run `Mysql_script_set_reset` whenever you need to restore the database to its initial state.
 
+Explore the power of Inventory-Management and revolutionize your inventory management process!
+
+🔗 GitHub Repository: [Inventory-Management](https://github.com/yourusername/inventory-management)
 
