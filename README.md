@@ -1,10 +1,8 @@
 # Inventory-Management
 
-Welcome to Inventory-Management, a powerful full-stack desktop application that seamlessly connects user views, back-end functionality, and MySQL database support.
+It's a powerful full-stack desktop application that seamlessly connects user views, back-end functionality, and MySQL database support.
 
-Built using Maven, this application efficiently handles all dependencies, ensuring a smooth development experience.
-
-With Java FXML powering the dynamic front-end and a well-structured MVC architecture, Inventory-Management offers a user-friendly interface and robust functionality.
+I built this project to help the employer of my friend to help them with their inventory mangement. It can mangage all the products in inventory and can also print a report at the end of the day. It has user management and authentication functionality. With Java FXML powering the dynamic front-end and a well-structured MVC architecture, Inventory-Management offers a user-friendly interface and robust functionality.
 
 To get started, simply download the application from the GitHub repository linked below. The repository also includes the necessary MySQL script to set up the database support for the application.
 
